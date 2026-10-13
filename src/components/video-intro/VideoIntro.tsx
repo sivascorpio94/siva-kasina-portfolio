@@ -86,7 +86,8 @@ export function VideoIntro({
       return;
     }
 
-    Promise.all([fg.play(), bg?.play()].filter(Boolean))
+    bg?.play().catch(() => {});
+    fg.play()
       .then(() => setIsPlaying(true))
       .catch(() => setIsPlaying(false));
   }, [reducedMotion]);
@@ -151,7 +152,14 @@ export function VideoIntro({
 
   return (
     <div ref={heroWrapperRef} className={styles.heroWrapper}>
-    <section ref={heroRef} className={styles.hero} aria-label="Introduction">
+    <section
+      ref={heroRef}
+      className={styles.hero}
+      aria-label="Introduction"
+      onClick={() => {
+        if (fgVideoRef.current?.paused) playVideo();
+      }}
+    >
       <div className={styles.videoLayer}>
         <video
           ref={bgVideoRef}
@@ -213,7 +221,10 @@ export function VideoIntro({
         )}
         <button
           type="button"
-          onClick={togglePlay}
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlay();
+          }}
           className={styles.glassButton}
           aria-pressed={isPlaying}
           aria-label={isPlaying ? "Pause introduction" : "Play introduction"}
@@ -222,7 +233,10 @@ export function VideoIntro({
         </button>
         <button
           type="button"
-          onClick={toggleMute}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleMute();
+          }}
           className={styles.glassButton}
           aria-pressed={!isMuted}
           aria-label={isMuted ? "Unmute introduction" : "Mute introduction"}

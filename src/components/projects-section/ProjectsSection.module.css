@@ -1,0 +1,234 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  border-bottom: 1px solid var(--color-border);
+  background:
+    linear-gradient(180deg, #0b0c0e 0%, #0d0f12 55%, #0a0b0d 100%);
+  scroll-margin-top: 1rem;
+}
+
+.inner {
+  position: relative;
+  z-index: 0;
+  padding-top: clamp(6rem, 11vw, 10rem);
+  padding-bottom: clamp(6rem, 11vw, 10rem);
+}
+
+.ambient {
+  position: absolute;
+  z-index: -1;
+  width: min(42vw, 34rem);
+  aspect-ratio: 1;
+  top: 8rem;
+  left: -17rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 157, 77, 0.09), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.ambientBlue {
+  position: absolute;
+  z-index: -1;
+  width: min(34vw, 28rem);
+  aspect-ratio: 1;
+  bottom: 4rem;
+  right: -14rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 160, 255, 0.08), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  align-items: stretch;
+  gap: clamp(1rem, 2.3vw, 1.5rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    rgba(19, 21, 25, 0.88);
+  border: 1px solid rgba(220, 224, 232, 0.12);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 157, 77, 0.55);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), 0 0 36px rgba(255, 157, 77, 0.08);
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(255, 157, 77, 0.14), transparent 70%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .spotlight {
+  opacity: 1;
+}
+
+.cardTop,
+.cardTitle,
+.cardSummary,
+.resultStat,
+.stack,
+.cardLinks {
+  position: relative;
+  z-index: 1;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.typeBadge {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-weight: 600;
+}
+
+.typePersonal {
+  color: var(--color-focus);
+  border: 1px solid rgba(125, 184, 255, 0.42);
+  background: rgba(125, 184, 255, 0.07);
+}
+
+.typeProduction {
+  color: var(--color-accent);
+  border: 1px solid rgba(255, 157, 77, 0.42);
+  background: rgba(255, 157, 77, 0.07);
+}
+
+.org {
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}
+
+.cardTitle {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  margin-top: 1rem;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.cardSummary {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.resultStat {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  flex-grow: 1;
+}
+
+.stack li {
+  max-width: 100%;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.cardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.caseStudyLink,
+.repoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.caseStudyLink {
+  color: var(--color-accent);
+}
+
+.repoLink {
+  color: var(--color-text-muted);
+}
+
+.repoLink:hover {
+  color: var(--color-text);
+}
+
+.caseStudyLink span,
+.repoLink span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.caseStudyLink:hover span,
+.repoLink:hover span {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .caseStudyLink span,
+  .repoLink span {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

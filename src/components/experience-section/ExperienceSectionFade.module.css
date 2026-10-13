@@ -1,0 +1,297 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, #0a0b0d 0%, #0c0d10 50%, #0a0b0d 100%);
+  scroll-margin-top: 1rem;
+}
+
+.particleLayerWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particleLayer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  opacity: 0.55;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-top: clamp(6rem, 11vw, 10rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.ambient {
+  position: absolute;
+  z-index: -1;
+  width: min(40vw, 32rem);
+  aspect-ratio: 1;
+  top: 4rem;
+  right: -16rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 157, 77, 0.09), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.ambientBlue {
+  position: absolute;
+  z-index: -1;
+  width: min(32vw, 26rem);
+  aspect-ratio: 1;
+  bottom: 6rem;
+  left: -14rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 160, 255, 0.08), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+/* ---- Default: safe vertical stack (mobile, reduced-motion, no-JS) ---- */
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.panelGlow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 55% at 15% 20%, color-mix(in srgb, var(--panel-accent) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 90% 85%, color-mix(in srgb, var(--panel-accent) 10%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.panelIndex {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1.25rem, 4vw, 2.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 600;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--panel-accent) 30%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.panelCard {
+  position: relative;
+  max-width: calc(var(--max-width) + 2 * clamp(1.5rem, 4vw, 3rem));
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 35%, transparent);
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--panel-accent) 7%, transparent), transparent 55%),
+    rgba(13, 14, 17, 0.94);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 60px -20px color-mix(in srgb, var(--panel-accent) 45%, transparent);
+}
+
+.panelGrid {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.panelLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--panel-accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 45%, transparent);
+  color: var(--panel-accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.companySub {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--panel-accent);
+}
+
+.companyName {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.role {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.dates {
+  color: var(--color-text-faint);
+}
+
+.panelRight {
+  min-width: 0;
+}
+
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--color-text-muted);
+  font-size: clamp(0.92rem, 1.3vw, 1.02rem);
+  line-height: 1.65;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--panel-accent);
+}
+
+.stackTags {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.stackTags li {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+}
+
+.note {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  font-style: italic;
+}
+
+.progressBar {
+  display: none;
+}
+
+/* ---- Cinematic cross-fade stage mode (JS-enabled, desktop, motion allowed) ---- */
+
+.stageMode {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stageMode .stage {
+  position: relative;
+  height: 100%;
+}
+
+.stageMode .panel {
+  position: absolute;
+  inset: 0;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(3.5rem, 7vw, 5rem);
+  will-change: opacity, transform;
+}
+
+.stageMode .panelGrid {
+  width: 100%;
+}
+
+.stageMode .companyName {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+}
+
+.stageMode .progressBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.5rem, 4vw, 2.5rem);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.progressCounter {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--color-text-faint);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  width: min(32vw, 20rem);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), rgba(96, 160, 255, 0.8));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@media (max-width: 640px) {
+  .panelGrid {
+    grid-template-columns: 1fr;
+  }
+}

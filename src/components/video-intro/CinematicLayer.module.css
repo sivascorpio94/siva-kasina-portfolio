@@ -1,0 +1,25 @@
+.field {
+  pointer-events: none;
+  /* Keep faces and central content clear; soften the canvas at every edge. */
+  mask-image:
+    radial-gradient(ellipse 42% 75% at 50% 50%, transparent 72%, #000 100%),
+    linear-gradient(to bottom, transparent 8%, #000 25%, #000 72%, transparent 96%),
+    linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-composite: intersect;
+}
+
+.field[data-density="full"] {
+  /* The hero's name sits at lower left: keep the whole lower band quiet. */
+  mask-image:
+    radial-gradient(ellipse 42% 75% at 50% 50%, transparent 72%, #000 100%),
+    linear-gradient(to bottom, transparent 12%, #000 25%, #000 42%, transparent 62%),
+    linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  .field { opacity: 0.65; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field { display: none; }
+}

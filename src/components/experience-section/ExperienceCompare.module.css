@@ -1,0 +1,39 @@
+.wrap {
+  position: relative;
+}
+
+.switcher {
+  position: sticky;
+  top: 5.5rem;
+  z-index: 40;
+  display: inline-flex;
+  margin-left: clamp(1.25rem, 4vw, 2.5rem);
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: rgba(15, 16, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.switcher button {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.switcher button:hover {
+  color: var(--color-text);
+}
+
+.switcher .active {
+  background: var(--color-accent);
+  color: #1a1308;
+  font-weight: 600;
+}

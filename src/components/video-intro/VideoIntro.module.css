@@ -1,0 +1,256 @@
+.heroWrapper {
+  position: relative;
+  height: 160svh;
+  background:
+    radial-gradient(ellipse at 50% 105%, rgba(201, 162, 75, 0.12), transparent 46%),
+    linear-gradient(180deg, #050506 0%, #090a0c 62%, #101113 100%);
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 560px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050506;
+  isolation: isolate;
+  transform-origin: center center;
+}
+
+.videoLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgVideo {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  filter: blur(70px) saturate(1.4) brightness(0.55);
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.fgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 42%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 75% at 50% 42%, #000 72%, transparent 100%);
+}
+
+.cinematicLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cinematicLayer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(5, 5, 6, 0.75) 100%);
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 6, 0.6) 0%,
+    rgba(5, 5, 6, 0.15) 32%,
+    rgba(5, 5, 6, 0.35) 60%,
+    rgba(5, 5, 6, 0.92) 100%
+  );
+}
+
+.glowOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 18% 85%, rgba(255, 157, 77, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(96, 160, 255, 0.1) 0%, transparent 40%);
+  mix-blend-mode: screen;
+}
+
+.textShade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse 60% 55% at 10% 100%,
+    rgba(5, 5, 6, 0.85) 0%,
+    rgba(5, 5, 6, 0.35) 55%,
+    transparent 80%
+  );
+}
+
+.content {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.5rem, 5vw, 4rem);
+  bottom: clamp(6.5rem, 15vh, 9rem);
+  max-width: min(88vw, 640px);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tagline {
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ember, #ff9d4d);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  color: #fdfaf6;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nameLine {
+  display: block;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+}
+
+.subtitle {
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 400;
+  color: rgba(244, 245, 247, 0.78);
+  max-width: 46ch;
+  letter-spacing: 0.01em;
+}
+
+.controls {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.soundHint {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(15, 15, 17, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  animation: hintPulse 2.4s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
+.glassButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  color: #fdfaf6;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.glassButton:hover {
+  background: rgba(255, 157, 77, 0.18);
+  border-color: rgba(255, 157, 77, 0.5);
+  transform: translateY(-1px);
+}
+
+.scrollCue {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(244, 245, 247, 0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.scrollCueLine {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(180deg, rgba(255, 157, 77, 0.9), rgba(244, 245, 247, 0.1));
+  position: relative;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.85); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCueLine,
+  .soundHint {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .controls {
+    top: 1.25rem;
+    bottom: auto;
+    left: 1rem;
+    right: 1rem;
+    justify-content: center;
+  }
+
+  .soundHint {
+    position: absolute;
+    top: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

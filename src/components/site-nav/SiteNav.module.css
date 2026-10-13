@@ -1,0 +1,84 @@
+.nav {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 0.75rem 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(15, 16, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  max-width: calc(100vw - 1.5rem);
+}
+
+.nav.scrolled {
+  background: rgba(10, 11, 13, 0.72);
+  border-color: rgba(255, 157, 77, 0.2);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.links a:hover {
+  color: var(--color-text);
+}
+
+.links a.active {
+  color: var(--color-accent);
+}
+
+.cta {
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a1308;
+  background: var(--color-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .links {
+    display: none;
+  }
+  .nav {
+    gap: 0.75rem;
+  }
+}
